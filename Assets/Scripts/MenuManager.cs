@@ -8,10 +8,27 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
 
+    public static MenuManager instance; // La instancia del Singleton
+
+    public GameObject selectedMap; // La variable que deseas hacer global
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this; // Establece esta instancia como la instancia única
+            DontDestroyOnLoad(gameObject); // Evita que el objeto se destruya al cambiar de escena
+        }
+        else
+        {
+            Destroy(gameObject); // Si ya hay una instancia, destruye esta
+        }
+    }
     public static string playerOneName, playerTwoName;
     [SerializeField] TMP_InputField playerOneField, playerTwoField;
     [SerializeField] GameObject mapSelector,nameSelector,menuSelector;
-public void Exit()
+    public GameObject[] map;
+    public void Exit()
     {
         Application.Quit();
     }

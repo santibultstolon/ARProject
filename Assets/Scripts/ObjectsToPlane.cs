@@ -23,6 +23,7 @@ public class ObjectsToPlane : MonoBehaviour
     bool touch;
     ObjectsToPlane scriptADestruir;
     PlayerInput _input;
+    public GameObject rotatione;
 
     ARRaycastManager aRRaycastManager;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -80,8 +81,9 @@ public class ObjectsToPlane : MonoBehaviour
 
                 //Intancia el prefab en una posicion y rotacion determinada
                 Vector3 lookPos = Camera.main.transform.position - spawnedObject.transform.position;
-                lookPos.y = 0;
-                spawnedObject.transform.rotation = Quaternion.LookRotation(lookPos);
+                lookPos.y = 50;
+                spawnedObject.transform.rotation = rotatione.transform.rotation;
+                spawnedObject.name = "Map";
                 haPuestoCastillo = true;
             }
         }

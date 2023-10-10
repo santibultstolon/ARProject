@@ -11,9 +11,9 @@ public class LanzarBola : MonoBehaviour
     public float speed;
     Camera mainCamera;
     Rigidbody rb;
-    ObjectsToPlane manager;
     public GameObject objectToThrow;
     GameObject puntoLanzamiento;
+    public bool hasBeenThrown;
 
     private void Start()
     {
@@ -35,24 +35,33 @@ public class LanzarBola : MonoBehaviour
         if(transform.position.y < -10)
         {
             rb.useGravity = false;
-            GameObject nuevaPelota = Instantiate(objectToThrow, puntoLanzamiento.transform.transform.transform.position, puntoLanzamiento.transform.rotation, puntoLanzamiento.transform);
+            GameObject map = GameObject.Find("Map");
+            map.GetComponent<Maps>().ChangeTurn();
             Destroy(gameObject);
         }
+
     }
     public void Touch(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
         {
-            distance = Vector3.Distance(transform.position, mainCamera.transform.position);
-            dragging = true;
+            if(!hasBeenThrown)
+            {
+                distance = Vector3.Distance(transform.position, mainCamera.transform.position);
+                dragging = true;
+            }
+
         }
         if (callbackContext.canceled)
         {
+            dragging = false;
+            hasBeenThrown = true;
             transform.SetParent(null);
             rb.useGravity = true;
             rb.velocity += transform.forward * throwSpeed;
             rb.velocity += transform.up * archSpeed;
-            dragging = false;
+            Destroy(gameObject.GetComponent<PlayerInput>());
+
         }
     }
 

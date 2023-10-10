@@ -13,10 +13,6 @@ public class Mapa : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator InstanciarObjeto()
     {
