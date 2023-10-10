@@ -9,8 +9,10 @@ public class Fields : MonoBehaviour
     public GameObject currentObject, placedObject;
     public float contador;
     Maps mapa;
-    float valorMax;
-    float valorMin;
+    float valorMax1;
+    float valorMax2;
+    float valorMin1;
+    float valorMin2;
     int objNumerF;
 
     private void Start()
@@ -47,18 +49,18 @@ public class Fields : MonoBehaviour
                     mapa.player1Numbers[fieldNumber] = fieldNumber;
                     for (int i = 0;i< mapa.player1Numbers.Length; i++)
                     {
-                        if (mapa.player1Numbers[i] > valorMax)
+                        if (mapa.player1Numbers[i] > valorMax1)
 
-                            valorMax = mapa.player1Numbers[i];
+                            valorMax1 = mapa.player1Numbers[i];
 
 
-                        else if (mapa.player1Numbers[i] < valorMin)
+                        else if (mapa.player1Numbers[i] < valorMin1)
 
-                            valorMin = mapa.player1Numbers[i];
+                            valorMin1 = mapa.player1Numbers[i];
                     }
                     for (int x = 0; x < mapa.player1Numbers.Length; x++)
                     {
-                        if (mapa.player1Numbers[x] == (valorMax + valorMin) / 2)
+                        if (mapa.player1Numbers[x] == (valorMax1 + valorMin1) / 2)
 
                             Debug.Log("Tres papi");
 
@@ -69,18 +71,18 @@ public class Fields : MonoBehaviour
                     mapa.player2Numbers[fieldNumber] = fieldNumber;
                     for (int i = 0; i < mapa.player2Numbers.Length; i++)
                     {
-                        if (mapa.player2Numbers[i] > valorMax)
+                        if (mapa.player2Numbers[i] > valorMax2)
 
-                            valorMax = mapa.player2Numbers[i];
+                            valorMax2 = mapa.player2Numbers[i];
 
 
-                        else if (mapa.player2Numbers[i] < valorMin)
+                        else if (mapa.player2Numbers[i] < valorMin2)
 
-                            valorMin = mapa.player2Numbers[i];
+                            valorMin2 = mapa.player2Numbers[i];
                     }
                     for (int x = 0; x < mapa.player2Numbers.Length; x++)
                     {
-                        if (mapa.player2Numbers[x] == (valorMax + valorMin) / 2)
+                        if (mapa.player2Numbers[x] == (valorMax2 + valorMin2) / 2)
 
                             Debug.Log("Tres papi");
 

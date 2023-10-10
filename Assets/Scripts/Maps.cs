@@ -27,11 +27,15 @@ public class Maps : MonoBehaviour
 
     public void ChangeTurn()
     {
-        turn++;
-        if(turn > 1)
+        if (puntoLanzamiento.transform.childCount == 0)
         {
-            turn = 0;
+            turn++;
+            if (turn > 1)
+            {
+                turn = 0;
+            }
+            GameObject nuevaPelota = Instantiate(objects[turn], puntoLanzamiento.transform.transform.transform.position, puntoLanzamiento.transform.rotation, puntoLanzamiento.transform);
         }
-        GameObject nuevaPelota = Instantiate(objects[turn], puntoLanzamiento.transform.transform.transform.position, puntoLanzamiento.transform.rotation, puntoLanzamiento.transform);
+
     }
 }

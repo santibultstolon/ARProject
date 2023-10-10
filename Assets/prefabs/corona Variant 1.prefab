@@ -147,7 +147,7 @@ MonoBehaviour:
   speed: 10
   objectToThrow: {fileID: 6765477087780827517}
   hasBeenThrown: 0
-  objNumber: 0
+  objNumber: 1
 --- !u!54 &8367007475013370740
 Rigidbody:
   m_ObjectHideFlags: 0
