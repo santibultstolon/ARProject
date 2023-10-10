@@ -12,14 +12,13 @@ public class LanzarBola : MonoBehaviour
     Camera mainCamera;
     Rigidbody rb;
     public GameObject objectToThrow;
-    GameObject puntoLanzamiento;
     public bool hasBeenThrown;
+    public int objNumber;
 
     private void Start()
     {
          rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main ;
-        puntoLanzamiento = GameObject.Find("HuecoObjeto");
     }
 
     private void Update()

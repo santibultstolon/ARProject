@@ -9,6 +9,8 @@ public class Maps : MonoBehaviour
     public int turn;
     [SerializeField] int mapNumber;
     public GameObject[] fields;
+    public int[] player2Numbers = new int[10];
+    public int[] player1Numbers = new int[10];
     void Start()
     {
         puntoLanzamiento = GameObject.Find("HuecoObjeto");

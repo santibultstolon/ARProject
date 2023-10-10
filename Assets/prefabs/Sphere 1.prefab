@@ -152,6 +152,7 @@ MonoBehaviour:
   speed: 10
   objectToThrow: {fileID: 5339665703222775009}
   hasBeenThrown: 0
+  objNumber: 1
 --- !u!114 &6584925579648056326
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,22 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Transactions;
+using System.Linq;
 
 public class Fields : MonoBehaviour
 {
-
+    [SerializeField]private int fieldNumber;
     public GameObject currentObject, placedObject;
     public float contador;
+    Maps mapa;
+    float valorMax;
+    float valorMin;
+    int objNumerF;
 
-
+    private void Start()
+    {
+        mapa = GameObject.Find("Map").GetComponent<Maps>();
+    }
     private void Update()
     {
         if ( currentObject!=null&&currentObject.GetComponent<Rigidbody>().velocity.magnitude<0.1f)
@@ -16,16 +25,69 @@ public class Fields : MonoBehaviour
             if(contador > 3){
                 if(placedObject!= null)
                 {
+                    if(objNumerF == 0)
+                    {
+                        mapa.player1Numbers[fieldNumber] = 0;
+                    }
+                    else
+                    {
+                        mapa.player2Numbers[fieldNumber] = 0;
+                    }
                     Destroy(placedObject);
                     placedObject = currentObject;
 
                 }
+                objNumerF = currentObject.GetComponent<LanzarBola>().objNumber;
                 Destroy(currentObject.GetComponent<LanzarBola>());
                 currentObject.tag = "Out";
                 currentObject.GetComponent<Rigidbody>().isKinematic = true;
                 placedObject = currentObject;
+                if (currentObject.GetComponent<LanzarBola>().objNumber ==0)
+                {
+                    mapa.player1Numbers[fieldNumber] = fieldNumber;
+                    for (int i = 0;i< mapa.player1Numbers.Length; i++)
+                    {
+                        if (mapa.player1Numbers[i] > valorMax)
+
+                            valorMax = mapa.player1Numbers[i];
+
+
+                        else if (mapa.player1Numbers[i] < valorMin)
+
+                            valorMin = mapa.player1Numbers[i];
+                    }
+                    for (int x = 0; x < mapa.player1Numbers.Length; x++)
+                    {
+                        if (mapa.player1Numbers[x] == (valorMax + valorMin) / 2)
+
+                            Debug.Log("Tres papi");
+
+                    }
+                }
+                else
+                {
+                    mapa.player2Numbers[fieldNumber] = fieldNumber;
+                    for (int i = 0; i < mapa.player2Numbers.Length; i++)
+                    {
+                        if (mapa.player2Numbers[i] > valorMax)
+
+                            valorMax = mapa.player2Numbers[i];
+
+
+                        else if (mapa.player2Numbers[i] < valorMin)
+
+                            valorMin = mapa.player2Numbers[i];
+                    }
+                    for (int x = 0; x < mapa.player2Numbers.Length; x++)
+                    {
+                        if (mapa.player2Numbers[x] == (valorMax + valorMin) / 2)
+
+                            Debug.Log("Tres papi");
+
+                    }
+                }
+
                 currentObject = null;
-                Maps mapa = GameObject.Find("Map").GetComponent<Maps>();
                 mapa.ChangeTurn();
                 contador= 0;
             }
@@ -42,7 +104,6 @@ public class Fields : MonoBehaviour
             
             currentObject = collision.gameObject;
 
-            Debug.Log(currentObject.name);
         }
     }
     private void OnCollisionExit(Collision collision)
