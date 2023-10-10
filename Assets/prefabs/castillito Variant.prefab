@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 5339665703222775009, guid: 395633be305101e458326d9881b326f3, type: 3}
-  - {fileID: 5339665703222775009, guid: d01f41f8caa4aab4b93274b6d78b9d36, type: 3}
+  - {fileID: 6765477087780827517, guid: 7c61887d8ca5d48419eca82362965cb6, type: 3}
+  - {fileID: 6765477087780827517, guid: f8904b667cced5c4d8603332e39040d9, type: 3}
   puntoLanzamiento: {fileID: 0}
   turn: 0
   mapNumber: 0

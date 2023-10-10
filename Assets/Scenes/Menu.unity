@@ -3186,11 +3186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bf42d29914d504db3e8d62c6929393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedMap: {fileID: 0}
   playerOneField: {fileID: 339601745}
   playerTwoField: {fileID: 488799071}
   mapSelector: {fileID: 1337034301}
   nameSelector: {fileID: 768573404}
   menuSelector: {fileID: 320576}
+  map: []
 --- !u!4 &1517115352
 Transform:
   m_ObjectHideFlags: 0
