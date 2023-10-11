@@ -9,8 +9,14 @@ public class MenuManager : MonoBehaviour
 {
 
     public static MenuManager instance; // La instancia del Singleton
+    public int mapNumber;
 
     public GameObject selectedMap; // La variable que deseas hacer global
+    public Button playButton;
+    private void Start()
+    {
+        playButton.enabled = false;
+    }
 
     private void Awake()
     {
@@ -50,5 +56,24 @@ public class MenuManager : MonoBehaviour
     {
         LeanTween.scale(mapSelector.GetComponent<RectTransform>(), new Vector3(0, 0, 0), 0.5f);
         SceneManager.LoadScene("Game");
+    }
+
+    public void MapSelect1()
+    {
+        mapNumber = 0;
+        selectedMap = map[mapNumber];
+        playButton.enabled = true;
+    }   
+    public void MapSelect2()
+    {
+        mapNumber = 1;
+        selectedMap = map[mapNumber];
+        playButton.enabled = true;
+    }  
+    public void MapSelect3()
+    {
+        mapNumber = 2;
+        selectedMap = map[mapNumber];
+        playButton.enabled = true;
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Transactions;
 using System.Linq;
+using System.Collections;
 
 public class Fields : MonoBehaviour
 {
@@ -14,10 +15,17 @@ public class Fields : MonoBehaviour
     float valorMin1;
     float valorMin2;
     int objNumerF;
+    GameManager manager;
 
     private void Start()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         mapa = GameObject.Find("Map").GetComponent<Maps>();
+    }
+    public IEnumerator FinishGame()
+    {
+        yield return new WaitForSeconds(5f);
+        manager.FinishGame();
     }
     private void Update()
     {
@@ -62,7 +70,7 @@ public class Fields : MonoBehaviour
                     {
                         if (mapa.player1Numbers[x] == (valorMax1 + valorMin1) / 2)
 
-                            Debug.Log("Tres papi");
+                            StartCoroutine("FinishGame");
 
                     }
                 }
@@ -84,7 +92,7 @@ public class Fields : MonoBehaviour
                     {
                         if (mapa.player2Numbers[x] == (valorMax2 + valorMin2) / 2)
 
-                            Debug.Log("Tres papi");
+                            StartCoroutine("FinishGame");
 
                     }
                 }

@@ -5,6 +5,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ARRaycastManager))]
 public class ObjectsToPlane : MonoBehaviour
@@ -34,6 +35,8 @@ public class ObjectsToPlane : MonoBehaviour
 
     private void Start()
     {
+        SceneManager.UnloadSceneAsync("Menu");
+        placedPrefab = MenuManager.instance.selectedMap;
         scriptADestruir = GetComponent < ObjectsToPlane > ();
         _input = GetComponent < PlayerInput > ();
     }
@@ -78,11 +81,8 @@ public class ObjectsToPlane : MonoBehaviour
 
                 //Guarda la instancia del prefab
                 spawnedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
-
-                //Intancia el prefab en una posicion y rotacion determinada
-                Vector3 lookPos = Camera.main.transform.position - spawnedObject.transform.position;
-                lookPos.y = 50;
-                spawnedObject.transform.rotation = rotatione.transform.rotation;
+                float rotationi = hitPose.position.y - transform.position.y;
+                spawnedObject.transform.Rotate(new Vector3(transform.rotation.x, rotationi, transform.rotation.z));
                 spawnedObject.name = "Map";
                 haPuestoCastillo = true;
             }

@@ -14,9 +14,11 @@ public class LanzarBola : MonoBehaviour
     public GameObject objectToThrow;
     public bool hasBeenThrown;
     public int objNumber;
+    Maps mapa;
 
     private void Start()
     {
+        mapa = GameObject.Find("Map").GetComponent<Maps>();
          rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main ;
     }
@@ -61,6 +63,16 @@ public class LanzarBola : MonoBehaviour
             rb.velocity += transform.up * archSpeed;
             Destroy(gameObject.GetComponent<PlayerInput>());
 
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Plane"))
+        {
+
+            mapa.ChangeTurn();
+            Destroy(gameObject);
         }
     }
 
