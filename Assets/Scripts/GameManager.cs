@@ -30,6 +30,6 @@ public void FinishGame()
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MenuCopia");
     }
 }

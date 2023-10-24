@@ -3,28 +3,38 @@ using System.Collections.Generic;
 using System.Transactions;
 using System.Linq;
 using System.Collections;
+using UnityEditor.PackageManager;
+using UnityEngine.UIElements;
 
 public class Fields : MonoBehaviour
 {
     [SerializeField]private int fieldNumber;
     public GameObject currentObject, placedObject;
     public float contador;
+    GameObject[] sensore = new GameObject[10];
     Maps mapa;
-    float valorMax1;
-    float valorMax2;
-    float valorMin1;
-    float valorMin2;
+    
     int objNumerF;
     GameManager manager;
 
     private void Start()
     {
+        sensore[1] = GameObject.Find("1");
+        sensore[2] = GameObject.Find("2");
+        sensore[3] = GameObject.Find("3");
+        sensore[4] = GameObject.Find("4");
+        sensore[5] = GameObject.Find("5");
+        sensore[6] = GameObject.Find("6");
+        sensore[7] = GameObject.Find("7");
+        sensore[8] = GameObject.Find("8");
+        sensore[9] = GameObject.Find("9");
+        
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         mapa = GameObject.Find("Map").GetComponent<Maps>();
     }
     public IEnumerator FinishGame()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         manager.FinishGame();
     }
     private void Update()
@@ -52,47 +62,70 @@ public class Fields : MonoBehaviour
                 currentObject.tag = "Out";
                 currentObject.GetComponent<Rigidbody>().isKinematic = true;
                 placedObject = currentObject;
-                if (currentObject.GetComponent<LanzarBola>().objNumber ==0)
+                if (objNumerF ==0)
                 {
+
+                    
                     mapa.player1Numbers[fieldNumber] = fieldNumber;
-                    for (int i = 0;i< mapa.player1Numbers.Length; i++)
+                        if(mapa.primera1 !=1)
+                        {
+                            if (fieldNumber > mapa.valorMax1)
+
+                                mapa.valorMax1 = fieldNumber;
+
+
+                            else if (fieldNumber < mapa.valorMin1)
+
+                                mapa.valorMin1 = fieldNumber;
+                        }
+                        else if(mapa.primera1 ==1)
+                        {
+                            mapa.valorMax1 = fieldNumber;
+                            mapa.valorMin1 = fieldNumber;
+                            mapa.primera1 = 0;
+                        }
+                    /*for (int x = 0; x < mapa.player1Numbers.Length; x++)
                     {
-                        if (mapa.player1Numbers[i] > valorMax1)
-
-                            valorMax1 = mapa.player1Numbers[i];
-
-
-                        else if (mapa.player1Numbers[i] < valorMin1)
-
-                            valorMin1 = mapa.player1Numbers[i];
-                    }
-                    for (int x = 0; x < mapa.player1Numbers.Length; x++)
-                    {
-                        if (mapa.player1Numbers[x] == (valorMax1 + valorMin1) / 2)
-
+                        if ((mapa.player1Numbers[x] == (mapa.valorMax1 + mapa.valorMin1) / 2)&&mapa.valorMax1!=mapa.valorMin1)
+                        {
+                            Debug.Log("Player1");
                             StartCoroutine("FinishGame");
+                        }
 
-                    }
+
+
+                    }*/
+                    CheckWinner();
                 }
                 else
                 {
                     mapa.player2Numbers[fieldNumber] = fieldNumber;
-                    for (int i = 0; i < mapa.player2Numbers.Length; i++)
+                    if (mapa.primera2 != 1)
                     {
-                        if (mapa.player2Numbers[i] > valorMax2)
+                        if (fieldNumber > mapa.valorMax2)
 
-                            valorMax2 = mapa.player2Numbers[i];
+                            mapa.valorMax2 = fieldNumber;
 
 
-                        else if (mapa.player2Numbers[i] < valorMin2)
+                        else if (fieldNumber < mapa.valorMin2)
 
-                            valorMin2 = mapa.player2Numbers[i];
+                            mapa.valorMin2 = fieldNumber;
                     }
+                    else if (mapa.primera2 == 1)
+                    {
+                        mapa.valorMax2 = fieldNumber;
+                        mapa.valorMin2 = fieldNumber;
+                        mapa.primera2 = 0;
+                    }
+
                     for (int x = 0; x < mapa.player2Numbers.Length; x++)
                     {
-                        if (mapa.player2Numbers[x] == (valorMax2 + valorMin2) / 2)
-
+                        if ((mapa.player2Numbers[x] == (mapa.valorMax2 + mapa.valorMin2) / 2) && mapa.valorMax2 != mapa.valorMin2)
+                        {
+                            Debug.Log("Player2");
                             StartCoroutine("FinishGame");
+                        }
+
 
                     }
                 }
@@ -124,5 +157,34 @@ public class Fields : MonoBehaviour
 
             contador = 0;
         }
+    }
+
+    public void CheckWinner()
+    {
+
+        for (int i =0;i< mapa.player1Numbers.Length;i++)
+        {
+            if (mapa.player1Numbers[i] != 0)
+            {
+                RaycastHit hitInfo;
+                Vector3 direction =sensore[i].transform.position- sensore[fieldNumber].transform.position;
+
+                Debug.Log("[" + fieldNumber + "-" + i + "]");
+                if (Physics.Raycast(sensore[fieldNumber].transform.position, direction, out hitInfo, direction.magnitude))
+                {
+                    if(hitInfo.collider.gameObject != sensore[fieldNumber] && hitInfo.collider.gameObject != sensore[i].gameObject)
+                    {
+                        Debug.Log(hitInfo.collider.gameObject.name);
+                        if (mapa.player1Numbers.Contains(int.Parse(hitInfo.collider.gameObject.name)))
+                        {
+                            StartCoroutine("FinishGame");
+                        }
+
+                    }
+                   
+                }
+            }
+        }
+
     }
 }

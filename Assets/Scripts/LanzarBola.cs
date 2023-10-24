@@ -15,6 +15,8 @@ public class LanzarBola : MonoBehaviour
     public bool hasBeenThrown;
     public int objNumber;
     Maps mapa;
+    bool thrown;
+    float count;
 
     private void Start()
     {
@@ -40,6 +42,15 @@ public class LanzarBola : MonoBehaviour
             map.GetComponent<Maps>().ChangeTurn();
             Destroy(gameObject);
         }
+        if (thrown)
+        {
+            count += Time.deltaTime;
+            if(count > 10)
+            {
+                mapa.ChangeTurn();
+                Destroy(gameObject);
+            }
+        }
 
     }
     public void Touch(InputAction.CallbackContext callbackContext)
@@ -56,6 +67,7 @@ public class LanzarBola : MonoBehaviour
         if (callbackContext.canceled)
         {
             dragging = false;
+            thrown = true;
             hasBeenThrown = true;
             transform.SetParent(null);
             rb.useGravity = true;

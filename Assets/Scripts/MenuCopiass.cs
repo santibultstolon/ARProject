@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class MenuManager : MonoBehaviour
+public class MenuCopiass : MonoBehaviour
 {
-
-    public static MenuManager instance; // La instancia del Singleton
+ // La instancia del Singleton
     public int mapNumber;
 
     public GameObject selectedMap; // La variable que deseas hacer global
@@ -17,20 +16,6 @@ public class MenuManager : MonoBehaviour
     {
         playButton.enabled = false;
     }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this; // Establece esta instancia como la instancia única
-            DontDestroyOnLoad(gameObject); // Evita que el objeto se destruya al cambiar de escena
-        }
-        else
-        {
-            Destroy(gameObject); // Si ya hay una instancia, destruye esta
-        }
-    }
-    public static string playerOneName, playerTwoName;
     [SerializeField] TMP_InputField playerOneField, playerTwoField;
     [SerializeField] GameObject mapSelector,nameSelector,menuSelector;
     public GameObject[] map;
@@ -41,15 +26,15 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        LeanTween.moveLocal(menuSelector, new Vector3(-1185, -170, 0), 0.5f).setEase(LeanTweenType.easeInOutCubic);
+        LeanTween.moveLocal(menuSelector, new Vector3(-1185, -524, 0), 0.5f).setEase(LeanTweenType.easeInOutCubic);
         LeanTween.scale(nameSelector.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
     }
 
     public void NameOK()
     {
         LeanTween.moveLocal(nameSelector, new Vector3(1099, 0, 0), 0.5f).setEase(LeanTweenType.easeInOutCubic);
-        playerOneName = playerOneField.text;
-        playerTwoName = playerTwoField.text;
+        MenuManager.playerOneName = playerOneField.text;
+        MenuManager.playerTwoName = playerTwoField.text;
         LeanTween.scale(mapSelector.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
     }
     public void MapSelOK()
@@ -60,20 +45,14 @@ public class MenuManager : MonoBehaviour
 
     public void MapSelect1()
     {
-        mapNumber = 0;
-        selectedMap = map[mapNumber];
+        MenuManager.instance.mapNumber = 0;
+        MenuManager.instance.selectedMap = MenuManager.instance.map[MenuManager.instance.mapNumber];
         playButton.enabled = true;
     }   
     public void MapSelect2()
     {
-        mapNumber = 1;
-        selectedMap = map[mapNumber];
+        MenuManager.instance.mapNumber = 1;
+        MenuManager.instance.selectedMap = MenuManager.instance.map[MenuManager.instance.mapNumber];
         playButton.enabled = true;
     }  
-    public void MapSelect3()
-    {
-        mapNumber = 2;
-        selectedMap = map[mapNumber];
-        playButton.enabled = true;
-    }
 }

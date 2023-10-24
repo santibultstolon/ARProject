@@ -35,7 +35,6 @@ public class ObjectsToPlane : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.UnloadSceneAsync("Menu");
         placedPrefab = MenuManager.instance.selectedMap;
         scriptADestruir = GetComponent < ObjectsToPlane > ();
         _input = GetComponent < PlayerInput > ();
@@ -81,9 +80,8 @@ public class ObjectsToPlane : MonoBehaviour
 
                 //Guarda la instancia del prefab
                 spawnedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
-                float rotationi = hitPose.position.y - transform.position.y;
-                spawnedObject.transform.Rotate(new Vector3(transform.rotation.x, rotationi, transform.rotation.z));
-                spawnedObject.name = "Map";
+                spawnedObject.transform.LookAt(new Vector3(Camera.main.transform.position.x,0, Camera.main.transform.position.z));
+                spawnedObject.GetComponentInChildren<Maps>().gameObject.name = "Map";
                 haPuestoCastillo = true;
             }
         }

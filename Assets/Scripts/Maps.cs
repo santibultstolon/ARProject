@@ -11,8 +11,15 @@ public class Maps : MonoBehaviour
     public GameObject[] fields;
     public int[] player2Numbers = new int[10];
     public int[] player1Numbers = new int[10];
+    public float valorMax1;
+    public float valorMax2;
+    public float valorMin1;
+    public float valorMin2;
+    public int primera1, primera2;
     void Start()
     {
+        primera1 = 1;
+        primera2 = 1;
         puntoLanzamiento = GameObject.Find("HuecoObjeto");
         StartCoroutine("InstanciarObjeto");
         turn = 0;
