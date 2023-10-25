@@ -15,6 +15,8 @@ public class MenuCopiass : MonoBehaviour
     private void Start()
     {
         playButton.enabled = false;
+        playerOneField.onValueChanged.AddListener(OnInputFieldValueChanged);
+        playerTwoField.onValueChanged.AddListener(OnInputFieldValueChanged);
     }
     [SerializeField] TMP_InputField playerOneField, playerTwoField;
     [SerializeField] GameObject mapSelector,nameSelector,menuSelector;
@@ -54,5 +56,21 @@ public class MenuCopiass : MonoBehaviour
         MenuManager.instance.mapNumber = 1;
         MenuManager.instance.selectedMap = MenuManager.instance.map[MenuManager.instance.mapNumber];
         playButton.enabled = true;
-    }  
+    }
+    private void OnInputFieldValueChanged(string newValue)
+    {
+        // Verifica la longitud del texto actual y lo ajusta si es necesario.
+        if (newValue.Length > 7)
+        {
+            // Verifica cuál de los dos InputFields desencadenó el evento y ajusta su valor.
+            if (playerOneField.isFocused)
+            {
+                playerOneField.text = newValue.Substring(0, 7);
+            }
+            else if (playerTwoField.isFocused)
+            {
+                playerTwoField.text = newValue.Substring(0, 7);
+            }
+        }
+    }
 }

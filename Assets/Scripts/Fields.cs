@@ -197,7 +197,7 @@ public class Fields : MonoBehaviour
                     if (hitInfo.collider.gameObject != sensore[fieldNumber] && hitInfo.collider.gameObject != sensore[i].gameObject)
                     {
                         Debug.Log(hitInfo.collider.gameObject.name);
-                        if (mapa.player2Numbers.Contains(int.Parse(hitInfo.collider.gameObject.name)))
+                        if (mapa.player2Numbers.Contains(hitInfo.collider.gameObject.GetComponent<EmptyField>().numero))
                         {
                             manager.winner = 2;
                             StartCoroutine("FinishGame");

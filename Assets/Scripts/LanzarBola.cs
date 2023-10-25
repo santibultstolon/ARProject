@@ -66,6 +66,7 @@ public class LanzarBola : MonoBehaviour
         }
         if (callbackContext.canceled)
         {
+            gameObject.GetComponent<MeshCollider>().enabled = true;
             dragging = false;
             thrown = true;
             hasBeenThrown = true;
