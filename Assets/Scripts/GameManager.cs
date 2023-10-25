@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] string player1Name, player2Name;
     [SerializeField] TMP_Text player1NameR, player2NameR;
+    [SerializeField] TMP_Text player1NameF, player2NameF;
     [SerializeField] GameObject finishUI,finishUI2,names;
     public GameObject[] x1, x2;
     public int winner;
+    public GameObject confeti;
 
     public Maps mapa;
     void Start()
@@ -18,7 +20,9 @@ public class GameManager : MonoBehaviour
         player1Name = MenuManager.playerOneName;
         player2Name = MenuManager.playerTwoName;
         player1NameR.text = player1Name;
+        player1NameF.text = player1Name;
         player2NameR.text = player2Name;
+        player2NameF.text = player2Name;
     }
 
 
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void FinishGame()
     {
         names.SetActive(false);
+        confeti.SetActive(true);
         if (winner == 1)
         {
             LeanTween.scale(finishUI.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
