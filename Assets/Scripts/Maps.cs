@@ -16,6 +16,7 @@ public class Maps : MonoBehaviour
     public float valorMin1;
     public float valorMin2;
     public int primera1, primera2;
+
     void Start()
     {
         primera1 = 1;

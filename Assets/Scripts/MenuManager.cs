@@ -16,6 +16,8 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         playButton.enabled = false;
+        playerOneField.onValueChanged.AddListener(OnInputFieldValueChanged);
+        playerTwoField.onValueChanged.AddListener(OnInputFieldValueChanged);
     }
 
     private void Awake()
@@ -75,5 +77,21 @@ public class MenuManager : MonoBehaviour
         mapNumber = 2;
         selectedMap = map[mapNumber];
         playButton.enabled = true;
+    }
+    private void OnInputFieldValueChanged(string newValue)
+    {
+        // Verifica la longitud del texto actual y lo ajusta si es necesario.
+        if (newValue.Length > 7)
+        {
+            // Verifica cuál de los dos InputFields desencadenó el evento y ajusta su valor.
+            if (playerOneField.isFocused)
+            {
+               playerOneField.text = newValue.Substring(0, 7);
+            }
+            else if (playerTwoField.isFocused)
+            {
+                playerTwoField.text = newValue.Substring(0, 7);
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@ public class ObjectsToPlane : MonoBehaviour
 
     ARRaycastManager aRRaycastManager;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    GameManager manager;
     private void Awake()
     {
         aRRaycastManager = GetComponent<ARRaycastManager>();
@@ -35,6 +36,7 @@ public class ObjectsToPlane : MonoBehaviour
 
     private void Start()
     {
+        manager = GameObject.Find("GameManager").GetComponent < GameManager > ();
         placedPrefab = MenuManager.instance.selectedMap;
         scriptADestruir = GetComponent < ObjectsToPlane > ();
         _input = GetComponent < PlayerInput > ();
@@ -82,6 +84,7 @@ public class ObjectsToPlane : MonoBehaviour
                 spawnedObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
                 spawnedObject.transform.LookAt(new Vector3(Camera.main.transform.position.x,0, Camera.main.transform.position.z));
                 spawnedObject.GetComponentInChildren<Maps>().gameObject.name = "Map";
+                manager.mapa = spawnedObject.GetComponentInChildren<Maps>();
                 haPuestoCastillo = true;
             }
         }

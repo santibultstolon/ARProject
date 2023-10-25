@@ -17,6 +17,7 @@ public class Fields : MonoBehaviour
     int objNumerF;
     GameManager manager;
 
+
     private void Start()
     {
         sensore[1] = GameObject.Find("1");
@@ -95,6 +96,7 @@ public class Fields : MonoBehaviour
 
 
                     }*/
+                    manager.UpdateMarkers();
                     CheckWinner();
                 }
                 else
@@ -114,20 +116,11 @@ public class Fields : MonoBehaviour
                     else if (mapa.primera2 == 1)
                     {
                         mapa.valorMax2 = fieldNumber;
-                        mapa.valorMin2 = fieldNumber;
+                        mapa.valorMin2= fieldNumber;
                         mapa.primera2 = 0;
                     }
-
-                    for (int x = 0; x < mapa.player2Numbers.Length; x++)
-                    {
-                        if ((mapa.player2Numbers[x] == (mapa.valorMax2 + mapa.valorMin2) / 2) && mapa.valorMax2 != mapa.valorMin2)
-                        {
-                            Debug.Log("Player2");
-                            StartCoroutine("FinishGame");
-                        }
-
-
-                    }
+                    manager.UpdateMarkers();
+                    CheckWinner();
                 }
 
                 currentObject = null;
@@ -177,11 +170,41 @@ public class Fields : MonoBehaviour
                         Debug.Log(hitInfo.collider.gameObject.name);
                         if (mapa.player1Numbers.Contains(int.Parse(hitInfo.collider.gameObject.name)))
                         {
+                            manager.winner = 1;
                             StartCoroutine("FinishGame");
                         }
 
                     }
                    
+                }
+            }
+        }
+
+    }
+    public void CheckWinner2()
+    {
+
+        for (int i = 0; i < mapa.player2Numbers.Length; i++)
+        {
+            if (mapa.player2Numbers[i] != 0)
+            {
+                RaycastHit hitInfo;
+                Vector3 direction = sensore[i].transform.position - sensore[fieldNumber].transform.position;
+
+                Debug.Log("[" + fieldNumber + "-" + i + "]");
+                if (Physics.Raycast(sensore[fieldNumber].transform.position, direction, out hitInfo, direction.magnitude))
+                {
+                    if (hitInfo.collider.gameObject != sensore[fieldNumber] && hitInfo.collider.gameObject != sensore[i].gameObject)
+                    {
+                        Debug.Log(hitInfo.collider.gameObject.name);
+                        if (mapa.player2Numbers.Contains(int.Parse(hitInfo.collider.gameObject.name)))
+                        {
+                            manager.winner = 2;
+                            StartCoroutine("FinishGame");
+                        }
+
+                    }
+
                 }
             }
         }
