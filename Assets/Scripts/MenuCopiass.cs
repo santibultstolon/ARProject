@@ -26,7 +26,7 @@ public class MenuCopiass : MonoBehaviour
 
     public void Play()
     {
-        LeanTween.moveLocal(menuSelector, new Vector3(-1185, -524, 0), 0.5f).setEase(LeanTweenType.easeInOutCubic);
+        LeanTween.moveLocal(menuSelector, new Vector3(-1185, -170, 0), 0.5f).setEase(LeanTweenType.easeInOutCubic);
         LeanTween.scale(nameSelector.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
     }
 

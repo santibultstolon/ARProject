@@ -120,7 +120,7 @@ public class Fields : MonoBehaviour
                         mapa.primera2 = 0;
                     }
                     manager.UpdateMarkers();
-                    CheckWinner();
+                    CheckWinner2();
                 }
 
                 currentObject = null;
