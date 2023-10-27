@@ -83,8 +83,8 @@ public class LanzarBola : MonoBehaviour
             hasBeenThrown = true;
             transform.SetParent(null);
             rb.useGravity = true;
-            rb.velocity += transform.forward * throwSpeed;
-            rb.velocity += transform.up * archSpeed;
+            rb.velocity += Camera.main.transform.forward * throwSpeed;
+            rb.velocity += Camera.main.transform.up * archSpeed;
             Destroy(gameObject.GetComponent<PlayerInput>());
 
         }

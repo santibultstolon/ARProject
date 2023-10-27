@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 764096572211750978}
   m_Layer: 0
   m_Name: GameObject 2
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -149,7 +149,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 3a0ad7fc4e40a7d4f97a91e377a8e644, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -261,6 +261,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6244273028554304455, guid: 4ae4b4e382722a14e9c504c24bf016b5,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244273028554304455, guid: 4ae4b4e382722a14e9c504c24bf016b5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244273028554304455, guid: 4ae4b4e382722a14e9c504c24bf016b5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244273028554304455, guid: 4ae4b4e382722a14e9c504c24bf016b5,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -321,6 +336,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1859568664404185119, guid: 4ae4b4e382722a14e9c504c24bf016b5, type: 3}
+    - {fileID: 8419345508453875827, guid: 4ae4b4e382722a14e9c504c24bf016b5, type: 3}
+    - {fileID: 8367007475013370740, guid: 4ae4b4e382722a14e9c504c24bf016b5, type: 3}
+    - {fileID: -7272949207731794211, guid: 4ae4b4e382722a14e9c504c24bf016b5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
