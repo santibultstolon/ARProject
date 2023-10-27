@@ -30,7 +30,7 @@ public class Maps : MonoBehaviour
     IEnumerator InstanciarObjeto()
     {
         yield return new WaitForSeconds(3);
-        GameObject nuevaPelota = Instantiate(objects[PlayManager.turn], puntoLanzamiento.transform.transform.transform.position, puntoLanzamiento.transform.rotation, puntoLanzamiento.transform);
+        GameObject nuevaPelota = Instantiate(objects[PlayManager.turn], puntoLanzamiento.transform.transform.transform.position, objects[PlayManager.turn].transform.rotation, puntoLanzamiento.transform);
     }
 
     public void ChangeTurn()

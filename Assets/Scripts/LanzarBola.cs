@@ -66,7 +66,18 @@ public class LanzarBola : MonoBehaviour
         }
         if (callbackContext.canceled)
         {
-            gameObject.GetComponent<MeshCollider>().enabled = true;
+
+            if ( gameObject.GetComponent<MeshCollider>() != null)
+            {
+                gameObject.GetComponent<MeshCollider>().enabled = true;
+
+            }
+            else
+            {
+                gameObject.GetComponentInChildren<MeshCollider>().enabled = true;
+            }
+            gameObject.GetComponent<TrailRenderer>().enabled = true;
+
             dragging = false;
             thrown = true;
             hasBeenThrown = true;
