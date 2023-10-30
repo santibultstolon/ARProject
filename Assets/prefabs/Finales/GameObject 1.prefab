@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 8623303155965126923, guid: 5dec7233c24765a4d8ea56aa3a39a162, type: 3}
-  - {fileID: 6765477087780827517, guid: 7c61887d8ca5d48419eca82362965cb6, type: 3}
+  - {fileID: 8623303155965126923, guid: 8a6bd4139c52742469af86a9c4eea723, type: 3}
   puntoLanzamiento: {fileID: 0}
   turn: 0
   mapNumber: 0
