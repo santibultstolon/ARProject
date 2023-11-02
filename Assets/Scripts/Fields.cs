@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Transactions;
 using System.Linq;
 using System.Collections;
-using UnityEditor.PackageManager;
 using UnityEngine.UIElements;
 
 public class Fields : MonoBehaviour
@@ -171,6 +170,7 @@ public class Fields : MonoBehaviour
                         if (mapa.player1Numbers.Contains(int.Parse(hitInfo.collider.gameObject.name)))
                         {
                             manager.winner = 1;
+
                             StartCoroutine("FinishGame");
                         }
 

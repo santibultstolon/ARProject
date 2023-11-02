@@ -16,9 +16,11 @@ public class Maps : MonoBehaviour
     public float valorMin1;
     public float valorMin2;
     public int primera1, primera2;
+    GameManager manager;
 
     void Start()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         primera1 = 1;
         primera2 = 1;
         puntoLanzamiento = GameObject.Find("HuecoObjeto");
@@ -35,7 +37,7 @@ public class Maps : MonoBehaviour
 
     public void ChangeTurn()
     {
-        if (puntoLanzamiento.transform.childCount == 0)
+        if (puntoLanzamiento.transform.childCount == 0&&(manager.winner!=1&&manager.winner!=2))
         {
             turn++;
             if (turn > 1)

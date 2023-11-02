@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject finishUI,finishUI2,names;
     public GameObject[] x1, x2;
     public int winner;
-    public GameObject confeti;
 
     public Maps mapa;
     void Start()
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
     public void FinishGame()
     {
         names.SetActive(false);
-        confeti.SetActive(true);
         if (winner == 1)
         {
             LeanTween.scale(finishUI.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
