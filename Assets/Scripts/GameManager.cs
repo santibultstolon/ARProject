@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] string player1Name, player2Name;
     [SerializeField] TMP_Text player1NameR, player2NameR;
     [SerializeField] TMP_Text player1NameF, player2NameF;
-    [SerializeField] GameObject finishUI,finishUI2,names;
+    [SerializeField] TMP_Text player1NameK, player2NameK;
+    [SerializeField] GameObject finishUIC,finishUI2C,names,finishUIK,finishUI2K;
     public GameObject[] x1, x2;
     public int winner;
 
@@ -21,7 +22,9 @@ public class GameManager : MonoBehaviour
         player1NameR.text = player1Name;
         player1NameF.text = player1Name;
         player2NameR.text = player2Name;
-        player2NameF.text = player2Name;
+        player2NameF.text = player2Name;    
+        player1NameK.text = player2Name;
+        player2NameK.text = player2Name;
     }
 
 
@@ -31,11 +34,27 @@ public class GameManager : MonoBehaviour
         names.SetActive(false);
         if (winner == 1)
         {
-            LeanTween.scale(finishUI.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
+            if(MenuManager.instance.mapNumber == 0)
+            {
+                LeanTween.scale(finishUIC.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
+            }
+            else if (MenuManager.instance.mapNumber == 1)
+            {
+                LeanTween.scale(finishUIK.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
+            }
+
         }
         else if(winner == 2)
         {
-            LeanTween.scale(finishUI2.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
+            if (MenuManager.instance.mapNumber == 0)
+            {
+                LeanTween.scale(finishUI2C.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
+            }
+            else if (MenuManager.instance.mapNumber == 1)
+            {
+                LeanTween.scale(finishUI2K.GetComponent<RectTransform>(), new Vector3(1, 1, 1), 0.5f).setDelay(0.5f);
+            }
+            
         }
 
 
